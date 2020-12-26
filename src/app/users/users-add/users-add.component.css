@@ -1,0 +1,8 @@
+input {
+  outline: 0;
+  border-width: 0 0 1px;
+  border-color: gray;
+}
+input:focus {
+  border-color: aqua;
+}

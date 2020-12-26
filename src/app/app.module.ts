@@ -7,6 +7,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { AuthComponent } from './auth/auth.component';
 import { UsersListComponent } from './users/users-list/users-list.component';
+import { UsersAddComponent } from './users/users-add/users-add.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { UsersListComponent } from './users/users-list/users-list.component';
     HeaderComponent,
     FooterComponent,
     AuthComponent,
-    UsersListComponent
+    UsersListComponent,
+    UsersAddComponent
   ],
   imports: [
     BrowserModule,
