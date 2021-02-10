@@ -1,5 +1,5 @@
-<app-header></app-header>
-<app-users-add></app-users-add>
-
-
-
+<app-header *ngIf="isConnected"></app-header>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+<!--app-footer></app-footer-->

@@ -1,0 +1,219 @@
+<!--
+<div class="row">
+<div class="table-wrapper col-md-6 shadow-lg p-3 mb-5 rounded float-left">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h2> <b>Ajouter un  nouveau Profil</b></h2>
+      <form #profilForm="ngForm" (ngSubmit)="onSubmit(profilForm)">
+        <div class="form-group row col-md-6 justify-content-center">
+          <input type="text" name="libelle" class="form-control centering" ngModel required #libelleControl="ngModel">
+            <small *ngIf="!libelleControl.valid && libelleControl.touched" class="text-center dacaller" style="color: red">Renseignez un Profil</small>
+        </div>
+          <div class="form-group row mt-2 justify-content-center">
+            <button type="submit" [disabled]="!profilForm.valid" class="btn btn-danger ">Ajouter</button>
+          </div>
+      </form>
+    </div>
+  </div>
+  <div class="table-title text-center">
+
+        <h2> <b>Liste Des Profils</b></h2>
+
+  </div>
+  <table class="table table-striped table-hover text-center">
+    <thead>
+    <tr>
+      <th>Libelle</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let profil of profils" class="w-20">
+      <td>{{profil.libelle}}</td>
+      <td>
+        <button (click)="listUsersByProfil(profil.id)" class="btn btn-sm btn-outline-info ml-1" title="View List" data-toggle="tooltip">
+          <i class="material-icons">&#xE417;</i>
+        </button>
+        <button (click)="onEdit()" class="btn btn-sm btn-outline-danger ml-1" title="Edit" data-toggle="tooltip">
+          <i class="material-icons">&#xE254;</i>
+        </button>
+        <button href="#myModal" class="btn btn-sm btn-outline-primary ml-1" data-toggle="modal"><i class="material-icons">&#xE872;</i></button>
+        <div id="myModal" class="modal fade">
+          <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+              <div class="modal-header flex-column">
+                <div class="icon-box">
+                  <i class="material-icons">&#xE5CD;</i>
+                </div>
+                <h4 class="modal-title w-100">Are you sure?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
+              <div class="modal-body">
+                <p>Do you really want to delete these records? This process cannot be undone.</p>
+              </div>
+              <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button (click)="onDelete(profil.id)"  class="btn btn-sm btn-outline-danger ml-1">
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+  <div class="col mt-5 movedDown" *ngIf="!hiden">
+    <table class="table table-striped table-hover text-center shadow-lg  float-left w-52 mt-2 ">
+      <thead>
+      <tr>
+        <th>Avatar</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Mail</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+        <td> <img src="{{user.photo}}"></td>
+        <td>{{user.nom}}</td>
+        <td>{{user.prenom}}</td>
+        <td>{{user.email}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <ul class="pagination">
+        <li class="page-item disabled"><a href="#">Previous</a></li>
+        <li class="page-item"><a href="#" class="page-link">1</a></li>
+        <li class="page-item"><a href="#" class="page-link">2</a></li>
+        <li class="page-item active"><a href="#" class="page-link">3</a></li>
+        <li class="page-item"><a href="#" class="page-link">4</a></li>
+        <li class="page-item"><a href="#" class="page-link">5</a></li>
+        <li class="page-item"><a href="#" class="page-link">Next</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+&lt;!&ndash;<div class="text-center">
+  &lt;!&ndash; Button HTML (to Trigger Modal) &ndash;&gt;
+  <a href="#myModal" class="trigger-btn" data-toggle="modal">Click to Open Confirm Modal</a>
+</div>&ndash;&gt;
+
+&lt;!&ndash; Modal HTML &ndash;&gt;
+
+
+
+
+-->
+<div class="row">
+  <div class="table-wrapper col-md-6 shadow-lg p-3 mb-5 rounded float-left">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2 *ngIf="isAddMode"> <b>Ajouter un  nouveau Profil</b></h2>
+        <h2 *ngIf="!isAddMode"> <b>Modifer un Profil</b></h2>
+        <form #profilForm="ngForm" (ngSubmit)="onSubmit(profilForm)">
+          <div class="form-group row col-md-6 justify-content-center">
+            <input type="text" name="libelle" class="form-control centering" ngModel required #libelleControl="ngModel">
+            <small *ngIf="!libelleControl.valid && libelleControl.touched" class="text-center dacaller" style="color: red">Renseignez un Profil</small>
+          </div>
+          <div class="form-group row mt-2 justify-content-center">
+            <button type="submit" [disabled]="!profilForm.valid" class="btn btn-danger ">Ajouter</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="table-title text-center">
+
+      <h2> <b>Liste Des Profils</b></h2>
+
+    </div>
+    <table class="table table-striped table-hover text-center">
+      <thead>
+      <tr>
+        <th>Libelle</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let profil of profils" class="w-20">
+        <td>{{profil.libelle}}</td>
+        <td>
+          <button (click)="listUsersByProfil(profil.id)" class="btn btn-sm btn-outline-info ml-1" title="View List" data-toggle="tooltip">
+            <i class="material-icons">&#xE417;</i>
+          </button>
+          <button [routerLink]="['editprofil', profil.id]" class="btn btn-sm btn-outline-danger ml-1" title="Edit" data-toggle="tooltip">
+            <i class="material-icons">&#xE254;</i>
+          </button>
+          <button href="#myModal" class="btn btn-sm btn-outline-primary ml-1" data-toggle="modal"><i class="material-icons">&#xE872;</i></button>
+          <div id="myModal" class="modal fade">
+            <div class="modal-dialog modal-confirm">
+              <div class="modal-content">
+                <div class="modal-header flex-column">
+                  <div class="icon-box">
+                    <i class="material-icons">&#xE5CD;</i>
+                  </div>
+                  <h4 class="modal-title w-100">Are you sure?</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                  <p>Do you really want to delete these records? This process cannot be undone.</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <button (click)="onDelete(profil.id)"  class="btn btn-sm btn-outline-danger ml-1">
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col mt-5 movedDown" *ngIf="!hiden">
+    <table class="table table-striped table-hover text-center shadow-lg  float-left w-52 mt-2 ">
+      <thead>
+      <tr>
+        <th>Avatar</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Mail</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+        <td> <img src="{{user.photo}}"></td>
+        <td>{{user.nom}}</td>
+        <td>{{user.prenom}}</td>
+        <td>{{user.email}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <ul class="pagination">
+        <li class="page-item disabled"><a href="#">Previous</a></li>
+        <li class="page-item"><a href="#" class="page-link">1</a></li>
+        <li class="page-item"><a href="#" class="page-link">2</a></li>
+        <li class="page-item active"><a href="#" class="page-link">3</a></li>
+        <li class="page-item"><a href="#" class="page-link">4</a></li>
+        <li class="page-item"><a href="#" class="page-link">5</a></li>
+        <li class="page-item"><a href="#" class="page-link">Next</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!--<div class="text-center">
+  &lt;!&ndash; Button HTML (to Trigger Modal) &ndash;&gt;
+  <a href="#myModal" class="trigger-btn" data-toggle="modal">Click to Open Confirm Modal</a>
+</div>-->
+
+<!-- Modal HTML -->
+
+
+
+

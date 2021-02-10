@@ -1,0 +1,18 @@
+.bordure{
+  border: 2px solid black;
+}
+.bord{
+  border-radius: 20%;
+  margin-top: 2px;
+  border: 2px solid gray;
+  float: right;
+}
+.btnValider{
+  background-color: orange;
+}
+.example-chip-list {
+  width: 100%;
+}
+small{
+  color: red;
+}

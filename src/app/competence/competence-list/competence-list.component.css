@@ -1,0 +1,22 @@
+.myLinks{
+  margin-top: 5px;
+}
+.scroll{
+  height: 200px;
+}
+h4{
+  color: red;
+}
+button:hover{
+  background-color: orange;
+}
+button {
+  transition-duration: 0.4s;
+}
+.floatBtn{
+  margin-left: 5%;
+  border-radius: 60%;
+}
+.floatBtn:hover{
+  background-color: orange;
+}

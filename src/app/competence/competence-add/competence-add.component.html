@@ -1,0 +1,106 @@
+<div class="card mt-5 shadow-lg" style="width: 60rem">
+  <div class="card-header">
+    <h1 class="text-center"> <b>Ajouter des Compétences</b>
+      <a  [routerLink]="['/competence']" class="btn ml-5 btn-outline-danger"  data-toggle="modal" ><i class="far fa-list-alt"></i></a>
+    </h1>
+
+  </div>
+  <div class="card-body">
+    <form [formGroup]="competenceForm" (ngSubmit)="onSubmit()">
+      <div class="form-group row">
+          <label>Groupe De Competence </label>
+          <select class="form-control form-control-ld ml-4 col-sm-6 col-md-6" formControlName="groupeCompetence">
+            <ng-container *ngFor="let gC of groupeCompetences">
+              <option value="{{gC.id}}"> {{gC.libelle}}</option>
+            </ng-container>
+          </select>
+          <small *ngIf="!competenceForm.get('groupeCompetence').valid && competenceForm.get('groupeCompetence').touched">
+            Veuillez Saisir le Libelle de la Competence</small>
+
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Libelle</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="libelle">
+          <small *ngIf="!competenceForm.get('libelle').valid && competenceForm.get('libelle').touched">Veuillez Saisir le Libelle de la Competence</small>
+        </div>
+      </div>
+
+      <div class="row">
+        <button class="btn btn-outline-danger ml-5" type="button"
+                data-toggle="collapse" data-target=".multi-collapse"
+                aria-expanded="false" aria-controls="groupeDactionniveau1 critereDevalniveau1">
+          Niveau 1</button>
+
+        <button class="btn btn-outline-danger ml-5" type="button"
+                data-toggle="collapse" data-target=".multi-collapse2"
+                aria-expanded="false" aria-controls="groupeDactionniveau2 critereDevalniveau2">
+          Niveau 2</button>
+
+        <button class="btn btn-outline-danger ml-5" type="button"
+                data-toggle="collapse" data-target=".multi-collapse3"
+                aria-expanded="false" aria-controls="groupeDactionniveau3 critereDevalniveau3">
+          Niveau 3</button>
+
+      </div>
+      <div class="row mt-2">
+        <div class="row">
+
+          <div class="col-md-6 mt-2">
+            <div class="collapse multi-collapse" id="critereDevalniveau1 ">
+              <label>Critere D'evaluation:</label>
+              <textarea class="form-control" formControlName="critereDeval1"></textarea>
+              <small *ngIf="!competenceForm.get('critereDeval1').valid && competenceForm.get('critereDeval1').touched"> Veuillez Remplir les Criteres D'evaluation niveau 1 </small>
+            </div>
+          </div>
+          <div class="col-md-6 mt-2">
+            <div class="collapse multi-collapse" id="groupeDactionniveau1">
+              <label>Groupe D'action A Realiser:</label>
+              <textarea class="form-control" formControlName="groupeDaction1"></textarea>
+              <small *ngIf="!competenceForm.get('groupeDaction1').valid && competenceForm.get('groupeDaction1').touched"> Veuillez Remplir les Groupes d'action Niveau 1 </small>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 mt-2">
+            <div class="collapse multi-collapse2" id="critereDevalniveau2">
+              <label>Critere D'evaluation:</label>
+              <textarea class="form-control" formControlName="critereDeval2"></textarea>
+              <small *ngIf="!competenceForm.get('critereDeval2').valid && competenceForm.get('critereDeval2').touched"> Veuillez Remplir les Criteres D'evaluation niveau 2 </small>
+            </div>
+          </div>
+          <div class="col-md-6 mt-2">
+            <div class="collapse multi-collapse2" id="groupeDactionniveau2">
+              <label>Groupe D'action A Realiser:</label>
+              <textarea class="form-control" formControlName="groupeDaction2"></textarea>
+              <small *ngIf="!competenceForm.get('groupeDaction2').valid && competenceForm.get('groupeDaction2').touched"> Veuillez Remplir les Groupes d'action Niveau 2 </small>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 mt-2">
+            <div class="collapse multi-collapse3" id="critereDevalniveau3">
+              <label>Critere D'evaluation:</label>
+              <textarea class="form-control" formControlName="critereDeval3"></textarea>
+              <small *ngIf="!competenceForm.get('critereDeval3').valid && competenceForm.get('critereDeval3').touched"> Veuillez Remplir les Criteres D'evaluation niveau 3 </small>
+
+            </div>
+          </div>
+          <div class="col-md-6 mt-2">
+            <div class="collapse multi-collapse3" id="groupeDactionniveau3">
+              <label>Groupe D'action A Realiser:</label>
+              <textarea class="form-control" formControlName="groupeDaction3"></textarea>
+              <small *ngIf="!competenceForm.get('groupeDaction3').valid && competenceForm.get('groupeDaction3').touched"> Veuillez Remplir les Groupes d'action Niveau 3 </small>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="form-group row justify-content-center">
+        <button type="submit" class="btn btn-block btnValider col-md-6 mt-5" [disabled]="!competenceForm.valid">Soumettre</button>
+      </div>
+    </form>
+
+  </div>
+</div>

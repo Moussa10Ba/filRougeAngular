@@ -1,7 +1,8 @@
 
 .navbar {
   color: #fff;
-  background: #55D6D4 !important;
+  /*background:#7BCDDA !important;*/
+  background:#49827c !important;
   padding: 5px 16px;
   border-radius: 0;
   border: none;
@@ -70,6 +71,7 @@
   color: #fff;
   text-shadow: 0 0 4px rgba(255,255,255,0.3);
 }
+
 .navbar .navbar-nav > a > i {
   display: block;
   text-align: center;
@@ -164,4 +166,7 @@
   .input-group {
     width: 100%;
   }
+}
+a:hover{
+  border-bottom: 3px solid orange;
 }

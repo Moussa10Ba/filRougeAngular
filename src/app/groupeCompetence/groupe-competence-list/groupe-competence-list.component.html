@@ -1,0 +1,43 @@
+<div class="container-fluid mt-5">
+
+
+   <div class="card ">
+     <div class="card-title"> <div class="row  justify-content-center">
+       <h2 class="mr-2 titre mt-5"> <b>Liste DesGroupes De Competences</b></h2>
+       <a  [routerLink]="['/groupecompetenceadd']" class="btn ml-5 btn-outline-danger mt-5" data-toggle="modal" ><i class="fas fa-plus-circle"></i></a>
+     </div></div>
+     <div class="row mt-5 justify-content-center">
+       <ng-container *ngFor="let groupeCompetence of groupeCompetences">
+         <div class="card col-md-3 ml-2 mt-3 mycollapse">
+           <div class="card-body">
+             <button class="float-right ml-2 supprimer " title="Delete" data-toggle="tooltip" (click)="OnDelete(groupeCompetence.id)"><i class="fa fa-times" aria-hidden="true"></i></button>
+             <h3  class="card-title  text-center">{{groupeCompetence.libelle}}</h3>
+             <p class="card-text">{{groupeCompetence.descriptif}}</p>
+             <p>
+             <button class="btn btn-outline-danger ml-5" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"  aria-controls="collapseExample">
+               Competence
+             </button>
+             </p>
+             <div class="collapse " id="collapseExample">
+               <div class="card card-body">
+                 <ul class="list-group">
+                 <ng-container *ngFor="let c of groupeCompetence.competences">
+
+                     <li class="list-group-item ">{{c.libelle}}</li>
+                 </ng-container>
+                 </ul>
+               </div>
+             </div>
+           </div>
+         </div>
+       </ng-container>
+
+     </div>
+   </div>
+</div>
+
+
+
+
+
+

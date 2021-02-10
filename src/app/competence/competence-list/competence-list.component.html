@@ -1,0 +1,67 @@
+<div class="card mt-5 shadow-lg" style="width: 100%">
+  <div class="card-header row justify-content-center ">
+    <h1><b>Liste des Compétences</b></h1>
+    <a [routerLink]="['/competenceadd']" class="btn btn-outline-danger bntadd ml-5" data-toggle="modal"><i class="fas fa-plus-circle f-2 "></i></a>
+
+  </div>
+   <div class="card-body" style="border: 2px solid black">
+       <div class="row ">
+       <div class="col border-2 overflow-auto  scroll">
+         <form [formGroup]="myForm">
+         <select class="form-control form-control-ld col-sm-6 col-md-12" (change)="alerter('ok')" formControlName="groupeCompetence">
+           <ng-container *ngFor="let gC of groupeCompetences">
+             <option value="{{gC.id}}">{{gC.libelle}}</option>
+           </ng-container>
+         </select>
+         </form>
+
+         <div class="myLinks mt-3">
+           <ng-container *ngFor="let c of competences">
+             <button type="button" (click)="getNiveau(c.id)" class="btn  btn-block btn-outline-danger">{{c.libelle}}</button>
+           </ng-container>
+         </div>
+
+
+
+       </div>
+       <div class="col">
+         <div class="row">
+           <button class="btn btn-danger ml-5 btn-block" type="button"
+                   data-toggle="collapse" data-target=".multi-collapse"
+                   aria-expanded="false" aria-controls="groupeDactionniveau1 critereDevalniveau1"
+           [disabled]="niveaux.length===0">
+            Afficher Niveau </button>
+
+         </div>
+
+
+
+         <div class="row mt-2">
+           <ng-container *ngFor="let n of niveaux">
+
+             <div class="col-md-6 mt-2">
+               <div class="collapse multi-collapse" id="groupeDactionniveau1">
+                 <div class="card card-body">
+                     {{n.groupeDaction}}
+                 </div>
+               </div>
+             </div>
+
+               <div class="col-md-6 mt-2">
+
+                 <div class="collapse multi-collapse" id="critereDevalniveau1">
+                   <div class="card card-body">
+                     {{n.critereDeval}}
+                   </div>
+                 </div>
+               </div>
+
+
+           </ng-container>
+         </div>
+       </div>
+
+    </div>
+  </div>
+
+</div>

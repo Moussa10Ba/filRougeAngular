@@ -1,0 +1,51 @@
+
+
+  <!-- Container containing all contents -->
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-10 col-md-9 col-lg-7 col-xl-6 shadow-lg p-3 mb-5 bg-white rounded">
+        <!-- White Container -->
+        <div class="container bg-white rounded mt-2 mb-2 px-0">
+          <!-- Main Heading -->
+          <div class="row justify-content-center align-items-center pt-3">
+            <h1><strong>Creation Groupe Competence</strong></h1>
+            <a  [routerLink]="['/goupecompetence']" class="btn ml-5 btn-outline-danger"  data-toggle="modal" ><i class="far fa-list-alt"></i></a>
+
+          </div>
+          <div class="pt-3 pb-3">
+            <form  [formGroup]="groupeCompetenceForm" (ngSubmit)="onSubmit()">
+              <!-- User Name Input -->
+              <div class="form-row mb-3">
+                <label class="col-sm-2 col-form-label" >Libelle: </label>
+                <input type="text" class="form-control col-sm-10" formControlName="libelle">
+                <small *ngIf="!groupeCompetenceForm.get('libelle').valid && groupeCompetenceForm.get('libelle').touched">Le libelle est obligatoire</small>
+              </div>
+
+              <div class="form-row mb-3">
+                <label >Descriptif:</label>
+                <textarea class="form-control" rows="3"  formControlName="descriptif"></textarea>
+                <small *ngIf="!groupeCompetenceForm.get('descriptif').valid && groupeCompetenceForm.get('descriptif').touched">Le Descriptif est obligatoire</small>
+              </div>
+              <label>Competences:</label>
+
+              <ng-multiselect-dropdown formControlName="competences"
+                [data]="competences"
+                [settings]="dropdownSettings"
+                (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)">
+              </ng-multiselect-dropdown>
+                <small *ngIf="!groupeCompetenceForm.get('competences').valid">Les Competences sont obligatoires</small>
+
+          <div class="form-group row justify-content-center mt-5">
+            <button type="submit" class="btn btn-info btnValider"  style="width: 50%" [disabled]="groupeCompetenceForm.invalid">
+              Enregistrer
+            </button>
+          </div>
+          </form>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+

@@ -1,50 +1,52 @@
-<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+<nav class="navbar navbar-expand-xl" >
   <a href="#" class="navbar-brand"><i class="fa fa-cube"></i>Sonatel<b> Academy</b></a>
   <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
     <span class="navbar-toggler-icon"></span>
   </button>
+
   <!-- Collection of nav links, forms, and other content for toggling -->
   <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
-    <form class="navbar-form form-inline">
+    <!--<form class="navbar-form form-inline">
       <div class="input-group search-box">
         <input type="text" id="search" class="form-control" placeholder="Search here...">
         <span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
       </div>
-    </form>
+    </form>-->
     <div class="navbar-nav ml-auto">
 
       <div class="nav-item dropdown">
-        <i class="fa fa-gears"><span>Parametres</span></i>
-        <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"></a>
+        <i class="fa fa-gears mt-2 float-right mr-4"></i>
+        <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action text-white mt-3">Parametre</a>
         <div class="dropdown-menu">
-          <a href="#" class="dropdown-item"><i class="fa fa-book" aria-hidden="true"></i> Référentiels</a>
-          <a href="#" class="dropdown-item"><i class="fa fa-cubes" aria-hidden="true"></i> Groupe de compétences</a>
-          <a href="#" class="dropdown-item"><i class="fa fa-cube" aria-hidden="true"></i>Compétences</a>
+          <a [routerLink]="['referentiel']" class="dropdown-item"><i class="fa fa-book" aria-hidden="true"></i> Référentiels</a>
+          <a [routerLink]="['goupecompetence']" class="dropdown-item"><i class="fa fa-cubes" aria-hidden="true"></i> Groupe de compétences</a>
+          <a [routerLink]="['competence']" class="dropdown-item"><i class="fa fa-cube" aria-hidden="true"></i>Compétences</a>
           <a href="#" class="dropdown-item"><i class="fa fa-object-group" aria-hidden="true"></i>Groupe Tags</a>
-          <a href="#" class="dropdown-item"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
+          <a [routerLink]="['profilsortie']" class="dropdown-item"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
             Profil de Sortie</a>
         </div>
       </div>
 
-      <!--a href="#" class="nav-item nav-link active"><i class="fa fa-home"></i><span>Home</span></a-->
-      <!--a href="#" class="nav-item nav-link"><i class="fa fa-gears"></i><span>Parametres</span></a-->
-      <a href="#" class="nav-item nav-link"><i class="fa fa-users"></i><span>Utilisateurs</span></a>
+      <a [routerLink]="['users']" class="nav-item nav-link"><i class="fa fa-users"></i><span>Utilisateurs</span></a>
       <a href="#" class="nav-item nav-link"><i class="fa fa-tasks" aria-hidden="true"></i><span>Brief</span></a>
-      <a href="#" class="nav-item nav-link"><i class="fa fa-briefcase"></i><span>Careers</span></a>
       <a href="#" class="nav-item nav-link"><i class="fa fa-envelope"></i><span>Messages</span></a>
-      <a href="#" class="nav-item nav-link"><i class="fa fa-bell"></i><span>Notifications</span></a>
+      <a [routerLink]="['profils']"  class="nav-item nav-link"><i class="fa fa-bell"></i><span>Profil</span></a>
 
 
 
 
       <div class="nav-item dropdown">
-        <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="assets/images/sa.jpeg" class="avatar" alt="Avatar"> Moussa Ba <b class="caret"></b></a>
+        <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action">
+          <img src="assets/images/sa.jpeg" class="avatar" alt="Avatar"> Admin <b class="caret"></b></a>
         <div class="dropdown-menu">
           <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
           <div class="divider dropdown-divider"></div>
-          <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+          <!--<a class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>-->
+          <button (click)="logOut()" class="dropdown-item"><i class="material-icons">&#xE8AC;</i>  Logout</button>
         </div>
       </div>
+
     </div>
   </div>
 </nav>
+

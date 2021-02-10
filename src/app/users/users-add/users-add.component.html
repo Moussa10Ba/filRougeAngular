@@ -1,55 +1,184 @@
-<div class="container ">
-  <div class="card" style="width: 30rem;">
+<div class="container shadow-lg mt-5 bg-danger rounded ">
+  <div class="card shadow-lg p-3 mb-5 bg-white rounded shadow-lg p-3 mt-5 bg-white rounded float-left ml-5" style="width: 30rem;">
     <img class="card-img-top" src="assets/images/sa.jpeg" alt="Card image cap" height="150px">
     <div class="card-body">
       <h5 class="card-title text-center">Nouveau Utilisateur</h5>
 
 
-      <form>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="inputEmail4">Nom</label>
-            <input type="text" class="form-control" id="inputEmail4" placeholder="nom">
+            <label>Nom</label>
+            <input type="text" class="form-control"  placeholder="nom" formControlName="nom">
+            <small *ngIf="!registerForm.get('nom').valid && registerForm.get('nom').touched">
+              Le nom est obligatoire
+            </small>
           </div>
+
+         <div class="form-group col-md-6">
+           <div class="blocavata imgavatar" >
+             <div>
+               <img class="avatarprofil" style="height: 100px; width: 100px"/>
+             </div>
+           </div>
+         </div>
+        </div>
+
+        <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="inputPassword4">Prenom</label>
-            <input type="text" class="form-control" id="inputPassword4" placeholder="Prenom">
+            <label>Prenom</label>
+            <input type="text" class="form-control" placeholder="Prenom" formControlName="prenom">
+            <small  *ngIf="!registerForm.get('prenom').valid && registerForm.get('prenom').touched">
+              Le prenom est obligatoire
+            </small>
+          </div>
+
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Email</label>
+            <input type="email" class="form-control"  placeholder="Email" formControlName="email">
+            <small *ngIf="!registerForm.get('email').valid && registerForm.get('email').touched">
+              L'email est incorrect
+            </small>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="inputEmail4">Email</label>
-            <input type="text" class="form-control"  placeholder="Email">
+            <label>Username</label>
+            <input type="email" class="form-control"  placeholder="Username" formControlName="username">
+            <small  *ngIf="!registerForm.get('username').valid && registerForm.get('username').touched">
+              L'email est incorrect
+            </small>
           </div>
+        </div>
+
+        <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="inputState">Profil</label>
-            <select id="inputState" class="form-control">
-              <option selected></option>
-              <option>ADMIN</option>
-              <option>CM</option>
-              <option>Formateur</option>
+            <label>Profil</label>
+            <select class="form-control"  formControlName="profil" >
+              <ng-container *ngFor="let profil of profils">
+                <ng-container *ngIf="profil.libelle != 'Apprenant'">
+                  <option  value="{{profil.id}}">{{profil.libelle}}</option>
+                </ng-container>
+              </ng-container>
+
+
+
             </select>
+            <small  *ngIf="!registerForm.get('profil').valid && registerForm.get('profil').touched">
+              Le profil est obligatoire
+            </small>
           </div>
         </div>
-
         <div class="row">
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Avatar</label>
-            <input type="file" accept="image/png,jpg" class="form-control" id="inputPassword4" placeholder="Prenom">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input"  lang="es"  formControlName="photo" (change)="onFileSelect($event)" accept="image/png, image/jpeg">
+            <label class="custom-file-label">Choisir Votre Avatar</label>
           </div>
 
-          <im
+
+          <small *ngIf="!registerForm.get('photo').valid && registerForm.get('photo').touched">
+            L'avatar est obligatoire
+          </small>
         </div>
 
-
-    <button type="submit" class="btn btn-primary">Enregistrer</button>
+          <div class="form-row mt-5">
+            <button class="btn btn-block" type="submit" [disabled]="!registerForm.valid" style="background-color: orange">Enregistrer</button>
+          </div>
   </form>
-
-
-
     </div>
   </div>
 </div>
+
+
+
+<!--
+<div class="container shadow-lg mt-5 bg-danger rounded ">
+  <div class="card shadow-lg p-3 mb-5 bg-white rounded shadow-lg p-3 mt-5 bg-white rounded float-left ml-5" style="width: 30rem;">
+    <img class="card-img-top" src="assets/images/sa.jpeg" alt="Card image cap" height="150px">
+    <div class="card-body">
+      <h5 class="card-title text-center">Nouveau Utilisateur</h5>
+
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Nom</label>
+            <input type="text" class="form-control"  placeholder="nom" formControlName="nom">
+            <small class="text-danger" *ngIf="!registerForm.get('nom').valid ">
+              Le nom est obligatoire
+            </small>
+          </div>
+
+          <div class="form-group col-md-6">
+            <div class="blocavata imgavatar" >
+              <div *ngIf="previewUrl">
+                <img [src]="previewUrl" class="avatarprofil" style="height: 100px; width: 100px"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Prenom</label>
+            <input type="text" class="form-control" placeholder="Prenom" formControlName="prenom">
+            <small class="text-danger" *ngIf="!userForm.get('prenom').valid">
+              Le prenom est obligatoire
+            </small>
+          </div>
+
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Email</label>
+            <input type="email" class="form-control"  placeholder="Email" formControlName="email">
+            <small class="text-danger" *ngIf="!userForm.get('email').valid">
+              L'email est incorrect
+            </small>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Profil</label>
+            <select class="form-control" name="profil" formControlName="profil">
+              <option selected></option>
+              <option value="{{admin}}">Administrateur</option>
+              <option value="{{formateur}}">Formateur</option>
+              <option value="{{cm}}">CM</option>
+            </select>
+            <small class="text-danger" *ngIf="!userForm.get('profil').valid">
+              Le profil est obligatoire
+            </small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="avatar" lang="es" formControlName="photo" (change)="fileProgress($event)">
+            <label class="custom-file-label">Choisir Votre Avatar</label>
+          </div>
+          <div *ngIf="fileUploadProgress">
+            Upload progress: {{ fileUploadProgress }}
+          </div>
+
+          <small class="text-danger" *ngIf="!userForm.get('photo').valid ">
+            L'avatar est obligatoire
+          </small>
+        </div>
+
+        <div class="form-row mt-5">
+          <button class="btn btn-block" type="submit" [disabled]="!userForm.valid" style="background-color: orange">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+-->
+
 
 
