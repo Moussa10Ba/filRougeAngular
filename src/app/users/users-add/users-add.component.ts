@@ -17,17 +17,22 @@ export class UsersAddComponent implements OnInit {
   formateur = '/api/admin/profils/54';
   cm = '/api/admin/profils/55';
   profils: Profil[] = [];
-   /*object = {};
-  admin = '/api/admin/profils/56';
+  object = {};
+  fileToUpload: any;
+  imageUrl: any;
+  /*admin = '/api/admin/profils/56';
   formateur = '/api/admin/profils/54';
-  cm = '/api/admin/profils/55';
+  cm = '/api/admin/profils/55';*/
   fileData: File = null;
   previewUrl: any = null;
   fileUploadProgress: string = null;
   uploadedFilePath: string = null;
-  userForm: FormGroup;
-  profils: Profil [] = [];
-   submitted = false;
+  registerForm: FormGroup;
+  public imagePath;
+  imgURL: any;
+  /*profils: Profil [] = [];*/
+  submitted = false;
+
   constructor(private profilService: ProfilService, private userService: UserService) {
     this.profilService.getProfils().subscribe(
       (profil) => {
@@ -40,7 +45,7 @@ export class UsersAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userForm = new FormGroup({
+    this.registerForm = new FormGroup({
       nom: new FormControl(null,
         [
           Validators.required,
@@ -65,42 +70,74 @@ export class UsersAddComponent implements OnInit {
       photo: new FormControl(null,
         [
           Validators.required,
-        ]
+        ],
       ),
-
+      username: new FormControl(null,
+        [
+          Validators.required,
+        ],
+      ),
     });
   }
+
   // tslint:disable-next-line:typedef
-  get f() { return this.userForm.controls; }
+  get f() {
+    return this.registerForm.controls;
+  }
+
   // tslint:disable-next-line:typedef
-  onSubmit(){
-    const attrs = ['nom', 'prenom', 'email', 'profil', 'photo'];
+  onSubmit() {
+    const attrs = ['nom', 'prenom', 'email', 'profil', 'photo', 'username'];
     const registerFormData = new FormData();
-    for (const att of attrs)
-    {
-      registerFormData.append(att, this.userForm.get(att).value);
+    for (const att of attrs) {
+      registerFormData.append(att, this.registerForm.get(att).value);
     }
-    registerFormData.forEach((value, key) => {this.object[key] = value; });
+
+
     const json = JSON.stringify(this.object);
 
     // tslint:disable-next-line:prefer-const
-    this.userService.addUser(json).subscribe(
-      () => {
-
+    this.userService.addUser(registerFormData).subscribe(
+      ok => {
+        console.log('ok');
       },
-      () => {
-        console.log(json);
+      pasOK => {
+        console.log('error');
       }
     );
   }
-  // tslint:disable-next-line:typedef
-  fileProgress(fileInput: any) {
-    this.fileData = (fileInput.target.files[0] as File);
-    this.preview();
-  }
 
   // tslint:disable-next-line:typedef
-  preview() {
+  onFileSelect(event)
+  {
+    if (event.target.files.length > 0)
+    {
+      // alert('une image a été electionné');
+      const file = (event.target as HTMLInputElement).files[0];
+
+      this.registerForm.patchValue({photo: file });
+      this.registerForm.get('photo').updateValueAndValidity();
+    }
+  }
+  // tslint:disable-next-line:typedef
+  handleFileInput(file: FileList) {
+    this.fileToUpload = file.item(0);
+
+    //Show image preview
+    const reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.imageUrl = event.target.result;
+    };
+    reader.readAsDataURL(this.fileToUpload);
+  }
+  // tslint:disable-next-line:typedef
+  /*fileProgress(fileInput: any) {
+    this.fileData = (fileInput.target.files[0] as File);
+    this.preview();
+  }*/
+
+  // tslint:disable-next-line:typedef
+ /* preview(file: any) {
     // Show preview
     const mimeType = this.fileData.type;
     if (mimeType.match(/image\/!*!/) == null) {
@@ -115,6 +152,9 @@ export class UsersAddComponent implements OnInit {
       this.previewUrl = reader.result;
     };
   }*/
+}
+
+/*
   user: User;
   registerForm: FormGroup;
   error = '';
@@ -213,4 +253,4 @@ export class UsersAddComponent implements OnInit {
       };
   }
 
-}
+}*/

@@ -18,6 +18,7 @@
         <i class="fa fa-gears mt-2 float-right mr-4"></i>
         <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action text-white mt-3">Parametre</a>
         <div class="dropdown-menu">
+          <a [routerLink]="['promo']" class="dropdown-item"><i class="fa fa-id-card" aria-hidden="true"></i> Promos</a>
           <a [routerLink]="['referentiel']" class="dropdown-item"><i class="fa fa-book" aria-hidden="true"></i> Référentiels</a>
           <a [routerLink]="['goupecompetence']" class="dropdown-item"><i class="fa fa-cubes" aria-hidden="true"></i> Groupe de compétences</a>
           <a [routerLink]="['competence']" class="dropdown-item"><i class="fa fa-cube" aria-hidden="true"></i>Compétences</a>
@@ -28,16 +29,16 @@
       </div>
 
       <a [routerLink]="['users']" class="nav-item nav-link"><i class="fa fa-users"></i><span>Utilisateurs</span></a>
-      <a href="#" class="nav-item nav-link"><i class="fa fa-tasks" aria-hidden="true"></i><span>Brief</span></a>
+      <a [routerLink]="['profils']" class="nav-item nav-link"><i class="fa fa-tasks" aria-hidden="true"></i><span>Profil</span></a>
       <a href="#" class="nav-item nav-link"><i class="fa fa-envelope"></i><span>Messages</span></a>
-      <a [routerLink]="['profils']"  class="nav-item nav-link"><i class="fa fa-bell"></i><span>Profil</span></a>
+
 
 
 
 
       <div class="nav-item dropdown">
         <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action">
-          <img src="assets/images/sa.jpeg" class="avatar" alt="Avatar"> Admin <b class="caret"></b></a>
+          <img src="assets/images/sa.jpeg" class="avatar" alt="Avatar"> Arthur <b class="caret"></b></a>
         <div class="dropdown-menu">
           <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
           <div class="divider dropdown-divider"></div>

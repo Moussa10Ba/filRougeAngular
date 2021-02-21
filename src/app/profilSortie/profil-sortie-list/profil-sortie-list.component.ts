@@ -25,7 +25,7 @@ export class ProfilSortieListComponent implements OnInit {
   onDelete(id) {
     this.profilSortieService.deleteProfilSortie(id).subscribe(
       ok => {
-        console.log('DELETE');
+        console.log('Deleted');
         this.profilSortieService.getProfilsSortie().subscribe(
           profilsortie => {
             this.profilsSorties = profilsortie;
@@ -42,10 +42,17 @@ export class ProfilSortieListComponent implements OnInit {
     this.profilSortieService.addProfilSortie(profilSortieForm.value.libelleProfilSortie).subscribe(
        ok => {
            alert('Succes');
+           this.profilSortieService.getProfilsSortie().subscribe(
+           profilsortie => {
+             this.profilsSorties = profilsortie;
+             console.log(this.profilsSorties);
+           }
+         );
        },
        error => {
          alert('Error');
        }
     );
   }
+
 }

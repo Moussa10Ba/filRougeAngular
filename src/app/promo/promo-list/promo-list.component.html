@@ -1,0 +1,30 @@
+
+
+
+<div class="row  justify-content-center mt-5">
+  <h1 class="mr-2 titre mt-3"> <b> Liste Des Promo</b>
+    <a [routerLink]="['/promoadd']" class="btn btn-outline-danger ml-5" data-toggle="modal"><i class="fas fa-plus-circle f-2 "></i></a>
+  </h1>
+
+</div>
+<div class="row mt-5 justify-content-center bg-secondary" *ngFor="let p of promos">
+  <div class="card" style="width: 35rem;">
+
+      <img class="card-img-lef mt-5" src="data:image/png;base64,{{p.avatar}}" alt="Pas d'avatar Encore">
+
+    <div class="card-body">
+      <h1 class="card-title">{{p.titre}}</h1>
+      <p class="card-text">{{p.description}}</p>
+      <button disabled class="btn btn-outline-danger">Reference Agate</button>
+      <p class="card-text">{{p.referenceAgate}}</p>
+
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

@@ -5,7 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Competence} from '../../Model/Competence';
 import {CompetencesService} from '../../Service/competences.service';
 import {Niveau} from '../../Model/Niveau';
-
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-competence-list',

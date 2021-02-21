@@ -1,60 +1,13 @@
 <!--
-<div class="row bg-dark">
-  <div class="col col-md-4 col-sm-7 ml-5">
-    <div class="table-wrapper  shadow-lg p-3 mb-5  rounded  ">
-      <div class="table-title">
-        <div class="row">
-            <h2>Liste Des Profils De Sortie</h2>
-            <a [routerLink]="['/profilsortieadd']" class="btn ml-5 btn-outline-danger"><span><i class="fa fa-user-plus"></i></span></a>
-        </div>
-      </div>
-      <table class="table table-striped table-hover text-center">
-        <thead>
-        <tr>
-          <th>Libelle</th>
-          <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor = "let profilsortie of profilsSorties">
-          <td>{{profilsortie.libelleProfilSortie}}</td>
-          <td>
-            <a href="#" class="view" title="View List " data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-            <a (click)="onDelete(profilsortie.id)" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      <div class="clearfix">
-        <ul class="pagination">
-          <li class="page-item disabled"><a href="#">Previous</a></li>
-          <li class="page-item"><a href="#" class="page-link">1</a></li>
-          <li class="page-item"><a href="#" class="page-link">2</a></li>
-          <li class="page-item active"><a href="#" class="page-link">3</a></li>
-          <li class="page-item"><a href="#" class="page-link">4</a></li>
-          <li class="page-item"><a href="#" class="page-link">5</a></li>
-          <li class="page-item"><a href="#" class="page-link">Next</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="col">
-  </div>
-</div>
-
-
--->
 <div class="row">
   <div class="table-wrapper col-md-6 shadow-lg p-3 mb-5 rounded float-left">
     <div class="row">
       <div class="col-md-12 text-center">
         <h2> <b>Ajouter un  nouveau Profil De Sortie</b></h2>
         <form #profilSortieForm="ngForm" (ngSubmit)="onSubmit(profilSortieForm)">
-          <div class="form-group row col-md-6 justify-content-center">
+          <div class="form-group row col-md-6 decaller">
             <input type="text" name="libelleProfilSortie" class="form-control centering" ngModel required #libelleProfilSortieControl="ngModel">
-            <small *ngIf="!libelleProfilSortieControl.valid && libelleProfilSortieControl.touched" class="text-center dacaller" style="color: red">Renseignez un Profil</small>
+            <small *ngIf="!libelleProfilSortieControl.valid && libelleProfilSortieControl.touched" class="text-center" style="color: red">Renseignez un Profil</small>
           </div>
           <div class="form-group row mt-2 justify-content-center">
             <button type="submit" [disabled]="!profilSortieForm.valid" class="btn btn-danger ">Ajouter</button>
@@ -84,20 +37,74 @@
           <button href="#" class="btn btn-sm btn-outline-danger ml-1" title="Edit" data-toggle="tooltip">
             <i class="material-icons">&#xE254;</i>
           </button>
-          <button class="btn btn-sm btn-outline-primary ml-1" data-toggle="modal"><i class="material-icons">&#xE872;</i></button>
+          <button class="btn btn-sm btn-outline-primary ml-1" title="Delete" data-toggle="modal" (click)="onDelete(profilSortie.id)">
+            <i class="material-icons">&#xE872;</i>
+          </button>
 
         </td>
       </tr>
       </tbody>
     </table>
   </div>
-</div>
+</div>-->
+
 <!--<div class="text-center">
   &lt;!&ndash; Button HTML (to Trigger Modal) &ndash;&gt;
   <a href="#myModal" class="trigger-btn" data-toggle="modal">Click to Open Confirm Modal</a>
 </div>-->
 
 <!-- Modal HTML -->
+
+
+
+<div class="row">
+  <div class="table-wrapper col-md-6 shadow-lg p-3 mb-5 rounded float-left">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2> <b>Ajouter un  nouveau Profil De Sortie</b></h2>
+        <form #profilSortieForm="ngForm" (ngSubmit)="onSubmit(profilSortieForm)">
+          <div class="form-group row col-md-6 decaller">
+            <input type="text" name="libelleProfilSortie" class="form-control centering" ngModel required #libelleProfilSortieControl="ngModel">
+            <small *ngIf="!libelleProfilSortieControl.valid && libelleProfilSortieControl.touched" class="text-center" style="color: red">Renseignez un Profil</small>
+          </div>
+          <div class="form-group row mt-2 justify-content-center">
+            <button type="submit" [disabled]="!profilSortieForm.valid" class="btn btn-danger ">Ajouter</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="table-title text-center">
+
+      <h2> <b>Liste Des Profils De Sortie</b></h2>
+
+    </div>
+
+    <p-table [value]="profilsSorties" [paginator]="true" [rows]="4" class="table table-striped table-hover text-center">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Libelle</th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-profilsortie>
+        <tr>
+          <td>{{profilsortie.libelleProfilSortie}}</td>
+          <td><button  class="btn btn-sm btn-outline-info ml-1" title="View List" data-toggle="tooltip">
+            <i class="material-icons">&#xE417;</i>
+          </button>
+            <button href="#" class="btn btn-sm btn-outline-danger ml-1" title="Edit" data-toggle="tooltip">
+              <i class="material-icons">&#xE254;</i>
+            </button>
+            <button class="btn btn-sm btn-outline-primary ml-1" title="Delete" data-toggle="modal" (click)="onDelete(profilsortie.id)">
+              <i class="material-icons">&#xE872;</i>
+            </button></td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+  </div>
+</div>
+
 
 
 

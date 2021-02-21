@@ -17,7 +17,7 @@ export class JwtInterceptorService {
         setHeaders: {
           Authorization: `Bearer ${currentUser.token}`,
           Accept: 'Application/json',
-          'Content-Type': 'application/json'
+          /*'Content-Type': 'application/json'*/
         }
       });
     }

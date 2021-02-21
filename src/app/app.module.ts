@@ -23,13 +23,25 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {JwtInterceptorService} from './Helper/jwt-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
+/*import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';*/
 import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
-import {MatFormFieldModule} from '@angular/material/form-field';
+/*import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatOptionModule} from '@angular/material/core';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';*/
+import {ButtonModule} from 'primeng/button';
+import {TableModule} from 'primeng/table';
+import { UsersEditComponent } from './users/users-list/users-edit/users-edit.component';
+import {NgxQRCodeModule} from '@techiediaries/ngx-qrcode';
+import { ChipsModule } from 'primeng/chips';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { PromoListComponent } from './promo/promo-list/promo-list.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -51,7 +63,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     ReferentielListComponent,
     ReferentielAddComponent,
     PromoAddComponent,
-
+    UsersEditComponent,
+    PromoListComponent,
 
   ],
   imports: [
@@ -60,14 +73,15 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatTableModule,
     BrowserAnimationsModule,
-    MatPaginatorModule,
-    MatFormFieldModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    ButtonModule,
+    TableModule,
+    NgxQRCodeModule,
     MatChipsModule,
-    MatOptionModule,
-    MatAutocompleteModule,
-    NgMultiSelectDropDownModule.forRoot()
+    MatFormFieldModule,
+    DragDropModule,
+
 
   ],
   providers: [

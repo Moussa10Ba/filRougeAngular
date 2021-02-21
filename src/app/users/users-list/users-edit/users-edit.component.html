@@ -1,0 +1,101 @@
+<div class="container shadow-lg mt-5 bg-danger rounded ">
+  <div class="card shadow-lg p-3 mb-5 bg-white rounded shadow-lg p-3 mt-5 bg-white rounded float-left ml-5" style="width: 30rem;">
+    <img class="card-img-top" src="assets/images/sa.jpeg" alt="Card image cap" height="150px">
+    <div class="card-body">
+      <h1 class="card-title text-center"><b>Modifier Utilisateur</b></h1>
+
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Nom</label>
+            <input type="text" class="form-control"  placeholder="nom" formControlName="nom" value="{{user.nom}}">
+            <small *ngIf="!registerForm.get('nom').valid && registerForm.get('nom').touched">
+              Le nom est obligatoire
+            </small>
+          </div>
+
+
+          <div class="form-group col-md-6">
+            <div class="blocavata imgavatar" >
+              <div>
+                <img class="avatarprofil"  style="height: 100px; width: 100px" *ngIf="imageUrl" [src]="imageUrl">
+                <ng-container *ngIf="user.photo" >
+                  <img class="avatarprofil"  style="height: 100px; width: 100px" src="data:image/png;base64,{{user.photo}}" alt="Pas d'avatar Encore">
+                </ng-container>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Prenom</label>
+              <input type="text" class="form-control" placeholder="Prenom" formControlName="prenom" value="{{user.prenom}}">
+              <small  *ngIf="!registerForm.get('prenom').valid && registerForm.get('prenom').touched">
+                Le prenom est obligatoire
+              </small>
+            </div>
+
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Email</label>
+              <input type="email" class="form-control"  placeholder="Email" formControlName="email" value="{{user.email}}">
+              <small *ngIf="!registerForm.get('email').valid && registerForm.get('email').touched">
+                L'email est incorrect
+              </small>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Username</label>
+              <input type="email" class="form-control"  placeholder="Username" formControlName="username" value="{{user.login}}">
+              <small  *ngIf="!registerForm.get('username').valid && registerForm.get('username').touched">
+                L'email est incorrect
+              </small>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Profil</label>
+              <select class="form-control w-100"  formControlName="profil" >
+                <ng-container *ngFor="let profil of profils">
+                  <ng-container *ngIf="profil.libelle != 'Apprenant'">
+                    <option  value="/api/admin/profils/{{profil.id}}">{{profil.libelle}}</option>
+                  </ng-container>
+                </ng-container>
+
+
+
+              </select>
+              <small  *ngIf="!registerForm.get('profil').valid && registerForm.get('profil').touched">
+                Le profil est obligatoire
+              </small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input"  lang="es" #Image  formControlName="photo" (change)="onFileSelect($event)" (change)="handleFileInput($event.target['files'])" accept="image/png, image/jpeg">
+              <label class="custom-file-label">Choisir Votre Avatar</label>
+            </div>
+
+
+            <small *ngIf="!registerForm.get('photo').valid && registerForm.get('photo').touched">
+              L'avatar est obligatoire
+            </small>
+          </div>
+
+          <div class="form-row mt-5">
+            <button class="btn btn-block" type="submit" [disabled]="!registerForm.valid" style="background-color: orange">Enregistrer</button>
+          </div>
+        </div>
+
+        <!--<input #Image type="file" (change)="handleFileInput($event.target['files'])"/>-->
+
+      </form>
+    </div>
+  </div>

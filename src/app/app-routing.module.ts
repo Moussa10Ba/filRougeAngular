@@ -15,6 +15,8 @@ import {ReferentielListComponent} from './referentiel/referentiel-list/referenti
 import {ReferentielAddComponent} from './referentiel/referentiel-add/referentiel-add.component';
 import {PromoAddComponent} from './promo/promo-add/promo-add.component';
 import {UsersDetailsComponent} from './users/users-list/users-details/users-details.component';
+import {UsersEditComponent} from './users/users-list/users-edit/users-edit.component';
+import {PromoListComponent} from './promo/promo-list/promo-list.component';
 
 const routes: Routes = [
  {path : '', redirectTo: '/login', pathMatch: 'full'},
@@ -32,12 +34,14 @@ const routes: Routes = [
   {path: 'profilsortie', component: ProfilSortieListComponent},
   {path: 'referentiel', component: ReferentielListComponent},
   {path: 'referentieladd', component: ReferentielAddComponent},
+  {path: 'promo', component: PromoListComponent},
   {path: 'promoadd', component: PromoAddComponent},
   {path: 'users',
     component:
     UsersListComponent, children: [
           {path: 'details/:id', component: UsersDetailsComponent},
           {path: 'usersadd', component: UsersAddComponent},
+          {path: 'edit/:id', component: UsersEditComponent},
     ]},
 
 ];

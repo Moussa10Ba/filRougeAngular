@@ -1,10 +1,10 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {UserService} from '../../Service/user.service';
 import {User} from '../../Model/User';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
 import {Observable} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
+import * as jsPDF from 'jspdf';
+import {element} from 'protractor';
 
 @Component({
   selector: 'app-users-list',
@@ -43,5 +43,4 @@ export class UsersListComponent implements OnInit {
        }
     );
   }
-
 }

@@ -1,7 +1,8 @@
 <div class="row">
   <div class="card shadow-lg  col-md-12 mt-5">
     <div class="card-title text-center">
-     <h1 class="text-center mt-3"> <b>Ajouter Un Référentiel</b></h1>
+     <h1 class="text-center mt-3"> <b>Ajouter Un Référentiel</b>
+       <a  [routerLink]="['/referentiel']" class="btn btn-outline-danger ml-5"  data-toggle="modal" ><i class="far fa-list-alt"></i></a></h1>
     </div>
   </div>
   <div class="card-body shadow-lg">
@@ -26,16 +27,16 @@
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Competences</label>
+        <label class="col-sm-2 col-form-label">Groupes De Competences</label>
         <div class="col-md-6">
 
-            <ng-multiselect-dropdown formControlName="competences"
-                                     [data]="competences"
+            <ng-multiselect-dropdown formControlName="groupeCompetence"
+                                     [data]="groupeCompetences"
                                      [settings]="dropdownSettings"
                                      (onSelect)="onItemSelect($event)"
                                      (onSelectAll)="onSelectAll($event)">
             </ng-multiselect-dropdown>
-            <small *ngIf="!referentielForm.get('competences').valid && referentielForm.get('competences').touched">
+            <small *ngIf="!referentielForm.get('groupeCompetence').valid && referentielForm.get('groupeCompetence').touched">
               Veuillez Ajouter les competences du Referentiel
             </small>
 
@@ -58,8 +59,8 @@
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Critères d'évaluation</label>
         <div class="col-sm-8">
-          <textarea  class="form-control"  style="height: 100px" formControlName="critereDeval"> </textarea>
-          <small *ngIf="!referentielForm.get('critereDeval').valid && referentielForm.get('critereDeval').touched">
+          <textarea  class="form-control"  style="height: 100px" formControlName="critereDev"> </textarea>
+          <small *ngIf="!referentielForm.get('critereDev').valid && referentielForm.get('critereDev').touched">
             Veuillez Saisir les criteres d'evaluations du Referentiel
           </small>
         </div>

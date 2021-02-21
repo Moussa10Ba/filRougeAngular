@@ -1,18 +1,43 @@
 
- <div class="col col-md-6 col-sm-3 mt-5 ml-5 ">
-   <div class="card shadow-lg mt-5 float-left" style="width: 30rem;">
-     <img class="card-img-top" src="" alt="Card image cap">
+ <div class="col col-md-6 col-sm-3 ml-5 ">
+   <div class="card shadow-lg float-left taille mt-5" style="width: 35rem;">
      <div class="card-body">
-     </div>
-     <ul class="list-group list-group-flush text-center">
-       <li class="list-group-item"> Id: {{user.id}}</li>
-       <li class="list-group-item">Prenom: {{user.prenom}}</li>
-       <li class="list-group-item">Nom: {{user.nom}}</li>
-       <li class="list-group-item">Email: {{user.email}}</li>
-       <li class="list-group-item">Username: {{user.login}}</li>
+     <div class="row">
+       <div class="col col-md-3">
+         <ng-container *ngIf="user.photo">
+           <img class="card-img-lef mt-5" src="data:image/png;base64,{{user.photo}}" alt="Pas d'avatar Encore">
+         </ng-container>
+       </div>
+       <div class="col col-md-5 mt-5">
+         Prenom: <b>{{user.prenom}}</b>
+         <br>
+         <br>
+         Nom: <b>{{user.nom}}</b>
+         <br>
+         <br>
+         Username: <b>{{user.login}}</b>
+         <br>
+         <br>
+         Email: <b>{{user.email}}</b>
 
-     </ul>
+       </div>
+       <div class="col-md-3 ">
+         <ngx-qrcode
+           [elementType]="elementType"
+           [errorCorrectionLevel]="correctionLevel"
+           [value]="[ user.nom, ' ', user.prenom, ' ', user.email ]"
+
+           alt="Demo QR Code"
+           class="bshadow">
+         </ngx-qrcode>
+       </div>
    </div>
  </div>
-
-
+     <div class="card-footer  text-center " style="background-color: #49827c">
+       SONATEL ACADEMIE Coding-For-Better-Life
+     </div>
+<div>
+</div>
+     <button (click)="generatePdf()">Open PDF</button>
+   </div>
+ </div>

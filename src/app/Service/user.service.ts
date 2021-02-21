@@ -23,9 +23,12 @@ export class UserService {
   {
     return this.http.get<User>(this.url + '/admin/utilisateurs/' + id);
   }
-
   // @ts-ignore
   addUser(data): any{
     return this.http.post(this.url + '/admin/utilisateurs/add', data );
+  }
+  // tslint:disable-next-line:typedef
+  updateUser(id, data): Observable<any>{
+    return this.http.put(this.url + '/admin/utilisateurs/' + id, data );
   }
 }

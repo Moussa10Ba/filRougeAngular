@@ -1,107 +1,164 @@
 <div class="card mt-5 shadow-lg">
-  <div class="card-title bg-danger">
-    <h1 class="text-center">Creer Une Promotion</h1>
+  <div class="card-title mt-3">
+   <h1 class="text-center"><b> Creer Une Promotion</b></h1>
   </div>
   <div class="card-body">
-    <form>
+    <form [formGroup]="promoForm" (ngSubmit)="onSubmit()">
       <div class="form-group row">
+        <div class="col-md-5">
           <label>Langue</label>
-          <select class="form-control ml-3 col-sm-6 col-md-5">
-            <option>Choix de la Langue...</option>
+          <select class="form-control " formControlName="langue">
+            <option> </option>
             <option>Français</option>
             <option>Anglais</option>
             <option>Arable</option>
           </select>
+          <small *ngIf="!promoForm.get('langue').valid && promoForm.get('langue').touched">La Langue est obligatoire</small>
         </div>
-        <div class="form-group row">
+        <div class="form-group col-md-5">
           <label>Titre</label>
-          <input type="text" class="form-control form-control-ld ml-4 col-sm-6 col-md-6">
+          <input type="text" class="form-control form-control-ld ml-4" formControlName="titre">
+          <small *ngIf="!promoForm.get('titre').valid && promoForm.get('titre').touched">La Titre est obligatoire</small>
         </div>
+      </div>
+
         <div class="form-group row">
-          <label>Description de la Promo</label>
-          <input type="text" class="form-control form-control-ld ml-4 col-sm-6 col-md-6">
+          <div class="col-md-5">
+            <label>Description de la Promo</label>
+            <textarea class="form-control form-control-ld ml-4" formControlName="description">
+            </textarea>
+            <small *ngIf="!promoForm.get('description').valid && promoForm.get('description').touched">La Description est obligatoire</small>
+          </div>
+          <div class="form-group col-md-5">
+            <label>Lieu de la Formation</label>
+            <input type="text" class="form-control form-control-ld ml-4" formControlName="lieu">
+            <small *ngIf="!promoForm.get('lieu').valid && promoForm.get('lieu').touched">Le Lieu est obligatoire</small>
+          </div>
         </div>
-      <div class="form-group row">
-        <label>Lieu de la Formation</label>
-        <input type="text" class="form-control form-control-ld ml-4 col-sm-6 col-md-6">
-      </div>
-      <div class="form-group row">
-        <label>Reference Agate</label>
-        <input type="text" class="form-control form-control-ld ml-4 col-sm-6 col-md-6">
-      </div>
-      <div class="form-group row">
-        <label>Choix de la Fabrique</label>
-        <select class="form-control ml-3 col-sm-6 col-md-5">
-          <option selected>Choix de la Fabrique...</option>
-          <option>Simplon</option>
-          <option>Sonatel Academy</option>
-          <option>Le Wagon</option>
-        </select>
-      </div>
+
       <div class="row">
-        <div class="form-group col-md-6">
-          <label for="" class="col-4 col-form-label">Date Debut</label>
-          <div class="col-10">
-            <input class="form-control" type="date" value="2011-08-19" id="">
-          </div>
+        <div class="form-group col-md-5">
+          <label>Reference Agate</label>
+          <input type="text" class="form-control form-control-ld ml-4" formControlName="referenceAgate">
+          <small *ngIf="!promoForm.get('referenceAgate').valid && promoForm.get('referenceAgate').touched">La Reference Agate est obligatoire</small>
         </div>
-        <div class="form-group col-md-6">
-          <label for="" class="col-4 col-form-label">Date Fin</label>
-          <div class="col-10">
-            <input class="form-control" type="date" value="2011-08-19" id="">
-          </div>
+        <div class="form-group col-md-5">
+          <label>Choix de la Fabrique</label>
+          <select class="form-control ml-4" formControlName="fabrique">
+            <option selected>Choix de la Fabrique...</option>
+            <option>Simplon</option>
+            <option>Sonatel Academy</option>
+            <option>Le Wagon</option>
+          </select>
+          <small *ngIf="!promoForm.get('fabrique').valid && promoForm.get('fabrique').touched">La Fabrique est obligatoire</small>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-5">
+          <label>Date Debut</label>
+          <input type="date" class="form-control form-control-ld ml-4" formControlName="dateDebut">
+          <small *ngIf="!promoForm.get('dateDebut').valid && promoForm.get('dateDebut').touched">La Date de Debut est obligatoire</small>
+        </div>
+        <div class="col-md-5">
+          <label>Date Fin</label>
+          <input type="date" class="form-control form-control-ld ml-4" formControlName="dateFin">
+          <small *ngIf="!promoForm.get('dateFin').valid && promoForm.get('dateFin').touched">La Date de Fin est obligatoire</small>
         </div>
       </div>
 
       <div class="form-group row">
-        <label>Referentiel</label>
-        <select class="form-control ml-3 col-sm-6 col-md-5">
-          <option>Selectionez un referentiel</option>
-          <option>Realiser un site à partir de wordpress</option>
-          <option>Developpeur Web et Mobile</option>
-          <option>Referent Digital</option>
-          <option>Objet Connectés</option>
-          <option>Developpeur Data</option>
-        </select>
+        <div class="col-md-5">
+          <label>Ajoutez des Referentiels</label>
+          <ng-multiselect-dropdown formControlName="referentiels"
+                                   [data]="referentiels"
+                                   [settings]="dropdownSettings"
+                                   (onSelect)="onItemSelect($event)"
+                                   (onSelectAll)="onSelectAll($event)">
+          </ng-multiselect-dropdown>
+          <small *ngIf="!promoForm.get('referentiels').valid && promoForm.get('referentiels').touched">Choisir au moins un Referentiel</small>
+        </div>
       </div>
 
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Image Promo</span>
+      <div class="row">
+        <div class="form-group col-md-10 dragzone mt-2">
+          <div class="custom-file col-md-6 decaller mt-5">
+            <input type="file" class="custom-file-input"  formControlName="avatar"
+                   (change)="onFileSelect($event)"
+                   (change)="handleFileInput($event.target['files'])" accept="image/png, image/jpeg"
+            >
+            <label class="custom-file-label" >Importer Depuis Votre Ordinateur</label>
+            <small *ngIf="!promoForm.get('avatar').valid && promoForm.get('avatar').touched">Choisissez une Photo Pour Cette Promo</small>
           </div>
-          <div class="custom-file">
-            <input type="file" class="custom-file-input col-md-6" id="inputGroupFile01">
-            <label class="custom-file-label" for="inputGroupFile01">Importer une Image</label>
-          </div>
+         <!-- <img class="avatarprofil mt-2"  style="height: 290px; width: 100%" *ngIf="imageUrl" [src]="imageUrl">-->
         </div>
+      </div>
+      <div class="custom-file col-md-6 decaller mt-5">
+        <input type="file" class="custom-file-input" formControlName="excelFile"
+               (change)="onFileSelectExcel($event)"
+        >
+        <label class="custom-file-label" >Fichier Excel des etudiants</label>
+        <small *ngIf="!promoForm.get('excelFile').valid && promoForm.get('excelFile').touched">Choisissez une Photo Pour Cette Promo</small>
+      </div>
 
-        <div class=" card row shadow-lg">
-          <div class="card-title text-center bg-danger rounded">
-            <h3>Liste des Apprenants</h3>
+            <div class="row mt-5">
+              <div class="col-md-6 btnsubmit">
+                <button type="submit" class="btn btn-danger btn-block ml">Creer la Promo et Ajouter des Apprenants</button>
+              </div>
+            </div>
+    </form>
+
+  </div>
+</div>
+<!-- <div class=" card row shadow-lg">
+          <div class="card-title text-center rounded mt-5">
+            <h3><b>Liste des Apprenants</b></h3>
           </div>
          <div class="card-body">
-           <div class="col-md-6 float-left bg-danger">
+           &lt;!&ndash;<div class="col-md-6 float-left bg-danger">
              <h4 class="text-center">Ajouter des Apprenants</h4>
              <span style="color: red">* Obligatoire</span>
              <div class="form-group col-md-10">
-               <label for="">Email</label>
+               <label>Email</label>
                <input type="email" class="form-control"  placeholder="@exemple.com">
-             </div>
+                </div>
+             </div>&ndash;&gt;
 
-           </div>
-           <div class="col-md-6 float-right bg-info">
+
+           <div class="col-md-6 float-right">
              <div class="form-group col-md-6 ml-1 justify-content-center">
                <div class="custom-file justify-content-center">
                  <input type="file" class="custom-file-input" accept="text/csv">
-                 <label class="custom-file-label" for="inputGroupFile01">Fichier CSV </label>
+                 <label class="custom-file-label">Fichier CSV Apprenant</label>
                </div>
              </div>
            </div>
          </div>
+        </div>-->
 
+<div class="example-container">
+  <h2>To do</h2>
 
-        </div>
-    </form>
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="todo"
+    [cdkDropListConnectedTo]="[doneList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
   </div>
+</div>
 
+<div class="example-container">
+  <h2>Done</h2>
+
+  <div
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="done"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+  </div>
 </div>
